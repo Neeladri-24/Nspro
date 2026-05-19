@@ -1,0 +1,137 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: micro
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: micro
+
+  template:
+    metadata:
+      labels:
+        app: micro
+
+    spec:
+      containers:
+      - name: micro
+        image: myapp
+
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: frontend
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: frontend
+
+  template:
+    metadata:
+      labels:
+        app: frontend
+
+    spec:
+      containers:
+      - name: frontend
+        image: frontend-app
+        ports:
+        - containerPort: 80
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: backend
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: backend
+
+  template:
+    metadata:
+      labels:
+        app: backend
+
+    spec:
+      containers:
+      - name: backend
+        image: backend-app
+        ports:
+        - containerPort: 5000
+
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello from Backend"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+
+
+FROM python:3.11
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+
+
+
+docker run -d --name sonarqube -p 9000:9000 sonarqube:9.9-community
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('SonarQube Scan') {
+            steps {
+                dir('D:/Project') {
+                    bat 'D:/Sonarscanner/sonar-scanner-8.0.1.6346-windows-x64/bin/sonar-scanner.bat'
+                }
+            }
+        }
+    }
+}
+sonar.projectKey=python-demo
+sonar.projectName=python-demo
+sonar.sources=.
+sonar.host.url=http://localhost:9000
+sonar.token=squ_6c4c06301abdfb2389311535ae4253aa19570dc9
+
+mvn archetype:generate ^
+-DgroupId=com.demo ^
+-DartifactId=MyMavenApp ^
+-DarchetypeArtifactId=maven-archetype-quickstart ^
+-DinteractiveMode=false
+
+mvn exec:java -Dexec.mainClass="com.demo.App"
+
+application
+java
+groovy
+junit
