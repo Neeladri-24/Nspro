@@ -1,76 +1,16 @@
-apiVersion: apps/v1
-kind: Deployment
+version: '3'
 
-metadata:
-  name: micro
+services:
 
-spec:
-  replicas: 2
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
 
-  selector:
-    matchLabels:
-      app: micro
-
-  template:
-    metadata:
-      labels:
-        app: micro
-
-    spec:
-      containers:
-      - name: micro
-        image: myapp
-
-
-apiVersion: apps/v1
-kind: Deployment
-
-metadata:
-  name: frontend
-
-spec:
-  replicas: 2
-
-  selector:
-    matchLabels:
-      app: frontend
-
-  template:
-    metadata:
-      labels:
-        app: frontend
-
-    spec:
-      containers:
-      - name: frontend
-        image: frontend-app
-        ports:
-        - containerPort: 80
-
-apiVersion: apps/v1
-kind: Deployment
-
-metadata:
-  name: backend
-
-spec:
-  replicas: 2
-
-  selector:
-    matchLabels:
-      app: backend
-
-  template:
-    metadata:
-      labels:
-        app: backend
-
-    spec:
-      containers:
-      - name: backend
-        image: backend-app
-        ports:
-        - containerPort: 5000
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
 
 
 from flask import Flask
