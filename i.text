@@ -58,11 +58,7 @@ sonar.sources=.
 sonar.host.url=http://localhost:9000
 sonar.token=squ_6c4c06301abdfb2389311535ae4253aa19570dc9
 
-mvn archetype:generate ^
--DgroupId=com.demo ^
--DartifactId=MyMavenApp ^
--DarchetypeArtifactId=maven-archetype-quickstart ^
--DinteractiveMode=false
+mvn archetype:generate -DgroupId=com.demo -DartifactId=MyMavenApp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
 mvn exec:java -Dexec.mainClass="com.demo.App"
 
