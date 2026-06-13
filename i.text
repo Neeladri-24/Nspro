@@ -77,4 +77,6 @@ groovy
 junit
 
 dir C:\sonarqube* /s /b
-
+netstat -ano | findstr :9000
+tasklist | findstr 5678
+taskkill /PID 5678 /F
