@@ -75,3 +75,6 @@ application
 java
 groovy
 junit
+
+dir C:\sonarqube* /s /b
+
