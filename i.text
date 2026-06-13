@@ -39,11 +39,6 @@ EXPOSE 5000
 CMD ["python", "app.py"]
 
 
-
-docker run -d --name sonarqube -p 9000:9000 sonarqube:9.9-community
-
-
-
 pipeline {
     agent any
 
@@ -77,6 +72,7 @@ groovy
 junit
 
 dir C:\sonarqube* /s /b
+
 netstat -ano | findstr :9000
 tasklist | findstr 5678
 taskkill /PID 5678 /F
