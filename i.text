@@ -74,3 +74,21 @@ tasklist | findstr 5678
 taskkill /PID 5678 /F
 
 control.exe keymgr.dll
+
+a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
+
+sum_result = a + b
+difference = a - b
+product = a * b
+
+if b != 0:
+    quotient = a / b
+else:
+    quotient = "Cannot divide by zero"
+
+print("\nResults:")
+print("Sum =", sum_result)
+print("Difference =", difference)
+print("Product =", product)
+print("Quotient =", quotient)
